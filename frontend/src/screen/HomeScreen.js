@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer } from "react";
 import axios from "axios";
-import logger from 'use-reducer-logger';
-
+import logger from "use-reducer-logger";
+import { Col, Container, Row } from "react-bootstrap";
+import Products from "../components/Products";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -36,32 +37,22 @@ function HomeScreen() {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h1>Product</h1>
-      <div className="products">
+      <Row>
         {loading ? (
           <p>loading</p>
         ) : error ? (
           <p>{error}</p>
         ) : (
           products.map((product) => (
-            <div className="product" key={product.name}>
-              <a href={`/product/slug/${product.slug}`}>
-                <img src={product.image} />
-              </a>
-              <div className="product-info">
-                <a href={`/product/${product.slug}`}>
-                  <p>{product.name}</p>
-                </a>
-                <p>
-                  <strong>{product.price}</strong>
-                </p>
-              </div>
-            </div>
+            <Col sm={6} md={4} lg={3} className="mb-3">
+              <Products product={product} />
+            </Col>
           ))
         )}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 }
 
