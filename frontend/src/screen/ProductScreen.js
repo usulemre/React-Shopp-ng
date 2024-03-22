@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import {
   Badge,
@@ -14,6 +14,7 @@ import Raiting from "../components/Raiting";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utlis";
+import { Store } from "../Store";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,8 +35,28 @@ function ProductScreen() {
   const [{ product, loading, error }, dispatch] = useReducer(reducer, {
     loading: false,
     error: "",
-    product: {},
+    product: [],
   });
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+
+  const {
+    cart: { cartItems },
+  } = state;
+
+  const addCartHandle = async () => {
+    const existItem = cartItems.find((item) => item._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/product/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alert("Uzgunuz Stok Mevcut Degil");
+      return;
+    }
+    ctxDispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...product, quantity },
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,7 +134,11 @@ function ProductScreen() {
                   </ListGroup.Item>
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
-                      <Button variant="primary" className="btn-warning w-100">
+                      <Button
+                        onClick={addCartHandle}
+                        variant="primary"
+                        className="btn-warning w-100"
+                      >
                         Sepete Ekle
                       </Button>
                     </ListGroup.Item>

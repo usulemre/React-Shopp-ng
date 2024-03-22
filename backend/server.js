@@ -14,6 +14,14 @@ app.get("/api/product/slug/:slug", (req, res) => {
     res.status(404).send({ message: "Urun Bulunamadı" });
   }
 });
+app.get("/api/product/:id", (req, res) => {
+  const product = data.product.find((item) => item._id === req.params.id);
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: "Urun Bulunamadı" });
+  }
+});
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
