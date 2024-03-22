@@ -1,5 +1,6 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import axios from "axios";
+import logger from 'use-reducer-logger';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -15,7 +16,7 @@ const reducer = (state, action) => {
 };
 
 function HomeScreen() {
-  const [{ loading, error, products }, distpach] = useReducer(reducer, {
+  const [{ loading, error, products }, distpach] = useReducer(logger(reducer), {
     products: [],
     loading: false,
     error: "",
@@ -25,13 +26,12 @@ function HomeScreen() {
     const fetchData = async () => {
       distpach({ type: "FETCH_REQUEST" });
       try {
-        const result = await axios.get("/api/produc");
+        const result = await axios.get("/api/product");
         distpach({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (error) {
         distpach({ type: "FETCH_FAIL", payload: error.message });
       }
     };
-
     fetchData();
   }, []);
 
