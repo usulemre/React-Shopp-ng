@@ -38,7 +38,7 @@ export const data = {
     },
     {
       name: "Nike Slim shirt",
-      slug: "nike-slim-shirt",
+      slug: "nike-slim-shirtt",
       category: "Shirts",
       image: "/images/4.jpeg",
       price: 120,
@@ -50,7 +50,7 @@ export const data = {
     },
     {
       name: "Nike Slim shirt",
-      slug: "nike-slim-shirt",
+      slug: "nike-slim-shirttt",
       category: "Shirts",
       image: "/images/5.jpg",
       price: 120,

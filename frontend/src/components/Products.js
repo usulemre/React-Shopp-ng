@@ -7,7 +7,7 @@ function Products(props) {
   const { product } = props;
   return (
     <Card sm={6} md={4} lg={3} className="mb-3">
-      <Link href={`/product/slug/${product.slug}`}>
+      <Link to={`/product/${product.slug}`}>
         <img
           src={product.image}
           alt={product.image}
@@ -16,7 +16,7 @@ function Products(props) {
         />
       </Link>
       <Card.Body>
-        <Link href={`/product/${product.slug}`}>
+        <Link to={`/product/${product.slug}`}>
           <Card.Title>{product.name}</Card.Title>
         </Link>
         <Raiting rating={product.rating} numReviews={product.numReviews} />
