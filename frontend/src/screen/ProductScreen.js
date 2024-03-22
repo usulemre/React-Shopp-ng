@@ -13,6 +13,7 @@ import {
 import Raiting from "../components/Raiting";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
+import { getError } from "../utlis";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -43,7 +44,7 @@ function ProductScreen() {
         const result = await axios.get(`/api/product/slug/${slug}`);
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (error) {
-        dispatch({ type: "FETCH_FAIL", payload: error.message });
+        dispatch({ type: "FETCH_FAIL", payload: getError(error) });
       }
     };
     fetchData();

@@ -5,6 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Products from "../components/Products";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
+import { getError } from "../utlis";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -32,7 +33,7 @@ function HomeScreen() {
         const result = await axios.get("/api/product");
         distpach({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (error) {
-        distpach({ type: "FETCH_FAIL", payload: error.message });
+        distpach({ type: "FETCH_FAIL", payload: getError(error) });
       }
     };
     fetchData();
