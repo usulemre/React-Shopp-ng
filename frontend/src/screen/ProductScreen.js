@@ -11,6 +11,8 @@ import {
   Row,
 } from "react-bootstrap";
 import Raiting from "../components/Raiting";
+import Loading from "../components/Loading";
+import MessageBox from "../components/MessageBox";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -49,9 +51,9 @@ function ProductScreen() {
   return (
     <Container>
       {loading ? (
-        <p>loading</p>
+        <Loading />
       ) : error ? (
-        <p>{error}</p>
+        <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <Row>
           <Col md={6}>

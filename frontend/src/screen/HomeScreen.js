@@ -3,6 +3,8 @@ import axios from "axios";
 import logger from "use-reducer-logger";
 import { Col, Container, Row } from "react-bootstrap";
 import Products from "../components/Products";
+import Loading from "../components/Loading";
+import MessageBox from "../components/MessageBox";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -41,9 +43,9 @@ function HomeScreen() {
       <h1>Product</h1>
       <Row>
         {loading ? (
-          <p>loading</p>
+          <Loading />
         ) : error ? (
-          <p>{error}</p>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           products.map((product) => (
             <Col sm={6} md={4} lg={3} className="mb-3">
