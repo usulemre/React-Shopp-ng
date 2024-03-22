@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function ProductScreen() {
-  return (
-    <div>ProductScreen</div>
-  )
+  return <div>ProductScreen</div>;
 }
 
-export default ProductScreen
+export default ProductScreen;

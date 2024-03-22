@@ -15,7 +15,6 @@ function HomeScreen() {
               <a href={`/product/${product.slug}`}>
                 <p>{product.name}</p>
               </a>
-
               <p>
                 <strong>{product.price}</strong>
               </p>
