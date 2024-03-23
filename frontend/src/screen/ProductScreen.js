@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Badge,
   Button,
@@ -25,11 +25,12 @@ const reducer = (state, action) => {
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     default:
-      break;
+      return state;
   }
 };
 
 function ProductScreen() {
+  const navigate = useNavigate();
   const { slug } = useParams();
 
   const [{ product, loading, error }, dispatch] = useReducer(reducer, {
@@ -56,6 +57,7 @@ function ProductScreen() {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity },
     });
+    navigate("/cart");
   };
 
   useEffect(() => {
@@ -79,7 +81,11 @@ function ProductScreen() {
       ) : (
         <Row>
           <Col md={6}>
-            <img src={product.image} className="mw-100" alt={product.slug} />
+            <img
+              src={product.image}
+              className="mw-100 object-fit-cover border rounded"
+              alt={product.slug}
+            />
           </Col>
           <Col md={3}>
             <ListGroup variant="flush">
@@ -139,7 +145,7 @@ function ProductScreen() {
                         variant="primary"
                         className="btn-warning w-100"
                       >
-                        Sepete Ekle
+                        Kart Onay
                       </Button>
                     </ListGroup.Item>
                   )}

@@ -8,6 +8,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Badge, Nav } from "react-bootstrap";
 import { useContext } from "react";
 import { Store } from "./Store";
+import { CartScreen } from "./screen/CartScreen";
 function App() {
   const { state } = useContext(Store);
   const {
@@ -35,9 +36,10 @@ function App() {
             </Container>
           </Navbar>
         </header>
-        <main className="flex-grow-1">
+        <main className="flex-grow-1 mt-2">
           <Routes>
             <Route path="/product/:slug" element={<ProductScreen />} />
+            <Route path="/cart" element={<CartScreen />} />
             <Route path="/" element={<HomeScreen />} />
           </Routes>
         </main>
