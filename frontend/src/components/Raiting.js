@@ -2,8 +2,6 @@ import React from "react";
 
 function Raiting(props) {
   const { rating, numReviews } = props;
-
-  console.log(rating);
   return (
     <div className="raiting ">
       <span className="text-warning">
