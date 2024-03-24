@@ -82,7 +82,7 @@ function ProductScreen() {
         <Row>
           <Col md={6}>
             <img
-              src={product.image}
+              src={product.images}
               className="mw-100 object-fit-cover border rounded"
               alt={product.slug}
             />

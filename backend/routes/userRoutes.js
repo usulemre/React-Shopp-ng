@@ -17,6 +17,8 @@ userRouter.post("/signin", async (req, res) => {
         token: genereToken(user),
       });
       return;
+    } else {
+      res.status(404).send({ message: "Kullanııcı Bilgileri Yanlıs" });
     }
   } else {
     res.status(404).send({ message: "Kullanıcı Bulunamadı" });

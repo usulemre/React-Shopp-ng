@@ -12,6 +12,7 @@ export const CartScreen = () => {
     cart: { cartItems },
   } = state;
   const updateCartHanle = async (item, quantity) => {
+
     const { data } = await axios.get(`/api/product/${item._id}`);
     if (data.countInStock < quantity) {
       window.alert("Uzgunuz Stok Mevcut Degil");
@@ -45,8 +46,8 @@ export const CartScreen = () => {
                   <Row className="align-items-center">
                     <Col xs={12} sm={3} md={3}>
                       <img
-                        src={item.image}
-                        alt={item.image}
+                        src={item.images}
+                        alt={item.images}
                         className="img-fluid rounded"
                         style={{ height: "80px" }}
                       />
