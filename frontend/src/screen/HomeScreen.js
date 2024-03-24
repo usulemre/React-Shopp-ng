@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import axios from "axios";
 import logger from "use-reducer-logger";
 import { Col, Container, Row } from "react-bootstrap";
@@ -6,8 +6,7 @@ import Products from "../components/Products";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utlis";
-import { Store } from "../Store";
-import { useNavigate } from "react-router-dom";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":

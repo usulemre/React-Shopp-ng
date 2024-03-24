@@ -1,11 +1,19 @@
 import React from "react";
-import Spinner from "react-bootstrap/Spinner";
 
 function Loading() {
   return (
-    <Spinner animation="border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "500px" }}
+    >
+      <div
+        class="spinner-grow"
+        style={{ width: "3rem", height: "3rem" }}
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   );
 }
 

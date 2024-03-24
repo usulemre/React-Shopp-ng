@@ -19,11 +19,12 @@ function Products(props) {
     const { data } = await axios.get(`/api/product/${product._id}`);
     if (data.countInStock < quantity) {
       window.alert("Urun stok adetini astiniz");
+    } else {
+      crxDispatch({
+        type: "CART_ADD_ITEM",
+        payload: { ...product, quantity },
+      });
     }
-    crxDispatch({
-      type: "CART_ADD_ITEM",
-      payload: { ...product, quantity },
-    });
   };
 
   return (

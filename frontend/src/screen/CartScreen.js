@@ -9,10 +9,10 @@ export const CartScreen = () => {
   const navigation = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
+    userInfo,
     cart: { cartItems },
   } = state;
   const updateCartHanle = async (item, quantity) => {
-
     const { data } = await axios.get(`/api/product/${item._id}`);
     if (data.countInStock < quantity) {
       window.alert("Uzgunuz Stok Mevcut Degil");
@@ -28,7 +28,11 @@ export const CartScreen = () => {
     ctxDispatch({ type: "CART_DELETE_ITEM", payload: item });
   };
   const chechoutHandle = () => {
-    navigation("/signin?redirect=/shipping");
+    if (userInfo) {
+      navigation("/shopping");
+    } else {
+      navigation("/signin?redirect=/shipping");
+    }
   };
   return (
     <Container>
@@ -63,11 +67,7 @@ export const CartScreen = () => {
                       >
                         {item.name}
                       </Link>
-                      <div className="d-block d-sm-none">
-                        {" "}
-                        {/* Küçük ekranlarda sadece görünsün */}
-                        {item.price}TL
-                      </div>
+                      <div className="d-block d-sm-none">{item.price}TL</div>
                     </Col>
                     <Col xs={4} sm={3} md={2}>
                       <div className="d-flex align-items-center">
@@ -101,13 +101,9 @@ export const CartScreen = () => {
                       </div>
                     </Col>
                     <Col sm={2} className="d-none d-sm-block">
-                      {" "}
-                      {/* Küçük ekranlarda görünmüyor */}
                       {item.price}TL
                     </Col>
                     <Col xs={4} sm={2} className="">
-                      {" "}
-                      {/* Küçük ekranlarda boşluk eklemek için */}
                       <Button
                         variant="light"
                         size="sm"

@@ -13,6 +13,7 @@ import { Store } from "./Store";
 import { CartScreen } from "./screen/CartScreen";
 import { Signin } from "./screen/Signin";
 import { ToastContainer } from "react-toastify";
+import Shopping from "./screen/Shopping";
 
 function App() {
   const { state, dispatch: ctxDistpach } = useContext(Store);
@@ -20,6 +21,7 @@ function App() {
   const logoutHandle = () => {
     ctxDistpach({ type: "USER_LOGOUT" });
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("shoppingAddress");
   };
   return (
     <BrowserRouter>
@@ -66,6 +68,7 @@ function App() {
           <Routes>
             <Route path="/product/:slug" element={<ProductScreen />} />
             <Route path="/cart" element={<CartScreen />} />
+            <Route path="/shopping" element={<Shopping />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/" element={<HomeScreen />} />
           </Routes>
