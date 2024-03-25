@@ -46,6 +46,7 @@ function Shopping() {
           <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Adres Baslıgı</Form.Label>
             <Form.Control
+              required
               value={fullname}
               type="text"
               placeholder="Adres Baslıgı giriniz"
@@ -55,6 +56,7 @@ function Shopping() {
           <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Adres</Form.Label>
             <Form.Control
+              required
               value={address}
               type="text"
               placeholder="Adres giriniz"
@@ -64,6 +66,7 @@ function Shopping() {
           <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Ulke</Form.Label>
             <Form.Control
+              required
               value={country}
               type="text"
               placeholder="Ulke giriniz"
@@ -73,6 +76,7 @@ function Shopping() {
           <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Sehir</Form.Label>
             <Form.Control
+              required
               value={city}
               type="text"
               placeholder="Sehir giriniz"
@@ -82,13 +86,14 @@ function Shopping() {
           <Form.Group className="mb-3" controlId="formGroupPassword">
             <Form.Label>Posta Kodu</Form.Label>
             <Form.Control
+              required
               value={postalCode}
               type="text"
               placeholder="Posta Kodu giriniz"
               onChange={(e) => setPostalCode(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupPassword">
+          <Form.Group className="mb-3">
             <div className=" d-grid">
               <Button className="bg-warning" onClick={handleAddres}>
                 Kaydet
